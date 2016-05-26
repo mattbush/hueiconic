@@ -6,99 +6,26 @@
 */
 'use strict';
 
-let React = require('react-native');
-let {
-    Animated,
+const React = require('react-native');
+const {
+//    Animated,
     AppRegistry,
-    Easing,
-    Image,
-    ScrollView,
+//    Easing,
+//    Image,
+//    ScrollView,
     StatusBarIOS,
     StyleSheet,
     Text,
-    View,
+//    View,
 } = React;
 
-let ExBoxes = require('./ExBoxes');
-let ExPhotoGallery = require('./ExPhotoGallery');
-let ExScreen = require('./ExScreen');
+const ExBoxes = require('./ExBoxes');
+const ExPhotoGallery = require('./ExPhotoGallery');
+const ExScreen = require('./ExScreen');
 
-let HORIZ_SPACE = 12;
+const HORIZ_SPACE = 12;
 
-class FirstExperience extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            headerColor: '#007aff',
-            isBoxPressed: false,
-        };
-    }
-
-    render() {
-        let boxColors = [
-            '#5ac8fa', '#ffcc00', '#ff9500', '#ff2d55', '#563b7e', '#007aff',
-            '#4cd964', '#ff3b30', '#8e8e93',
-        ];
-
-        return (
-            <ExScreen
-            title="hueiconic"
-            headerColor={this.state.headerColor}
-            scrollEnabled={!this.state.isBoxPressed}
-            style={styles.container}>
-
-            {/* Try editing this text and reloading your project in Exponent */}
-            <Text style={styles.paragraph}>
-            This is a simple example of what you can make with Exponent. Feel
-            free to try modifying it and seeing what happens!
-            </Text>
-
-            {/* Photo gallery demo */}
-            <Text style={styles.sectionTitle}>Photo Gallery</Text>
-            <ExPhotoGallery style={styles.gallery} />
-
-            {/* Bouncy boxes demo */}
-            <Text style={styles.sectionTitle}>Interactive Components</Text>
-            <ExBoxes
-            colors={boxColors}
-            onPressBoxBegin={() => this.setState({ isBoxPressed: true })}
-            onPressBoxEnd={() => this.setState({ isBoxPressed: false })}
-            onSelectColor={this._handleColorSelected.bind(this)}
-            style={styles.boxes}
-            />
-            <Text style={styles.note}>
-            Tap the boxes to change the color of the status bar. Press down
-            and drag them to see them bounce back with spring physics.
-            </Text>
-
-            {/* Publishing instructions */}
-            <Text style={styles.sectionTitle}>Publishing</Text>
-            <Text style={styles.paragraph}>
-            When you are ready to share what your work, run <Text style={styles.code}>exp publish</Text>.
-            Give the link to someone who has the Exponent app and they'll be
-            able to see what you've built.
-            </Text>
-
-            <Text style={styles.attribution}>
-            Made for <Text style={styles.exponent}>EXPONENT</Text>
-            </Text>
-            </ExScreen>
-        );
-    }
-
-    componentDidMount() {
-        if (StatusBarIOS) {
-            StatusBarIOS.setStyle('light-content', true);
-            StatusBarIOS.setHidden(false, 'fade');
-        }
-    }
-
-    _handleColorSelected(color) {
-        this.setState({ headerColor: color });
-    }
-}
-
-let styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
@@ -151,5 +78,78 @@ let styles = StyleSheet.create({
         letterSpacing: 3,
     },
 });
+
+class FirstExperience extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            headerColor: '#007aff',
+            isBoxPressed: false,
+        };
+    }
+
+    render() {
+        const boxColors = [
+            '#5ac8fa', '#ffcc00', '#ff9500', '#ff2d55', '#563b7e', '#007aff',
+            '#4cd964', '#ff3b30', '#8e8e93',
+        ];
+
+        return (
+            <ExScreen
+                title="hueiconic"
+                headerColor={this.state.headerColor}
+                scrollEnabled={!this.state.isBoxPressed}
+                style={styles.container}>
+
+            {/* Try editing this text and reloading your project in Exponent */}
+            <Text style={styles.paragraph}>
+                This is a simple example of what you can make with Exponent. Feel
+                free to try modifying it and seeing what happens!
+            </Text>
+
+            {/* Photo gallery demo */}
+            <Text style={styles.sectionTitle}>Photo Gallery</Text>
+            <ExPhotoGallery style={styles.gallery} />
+
+            {/* Bouncy boxes demo */}
+            <Text style={styles.sectionTitle}>Interactive Components</Text>
+            <ExBoxes
+                colors={boxColors}
+                onPressBoxBegin={() => this.setState({isBoxPressed: true})}
+                onPressBoxEnd={() => this.setState({isBoxPressed: false})}
+                onSelectColor={this._handleColorSelected.bind(this)}
+                style={styles.boxes}
+            />
+            <Text style={styles.note}>
+                Tap the boxes to change the color of the status bar. Press down
+                and drag them to see them bounce back with spring physics.
+            </Text>
+
+            {/* Publishing instructions */}
+            <Text style={styles.sectionTitle}>Publishing</Text>
+            <Text style={styles.paragraph}>
+                When you are ready to share what your work, run <Text style={styles.code}>exp publish</Text>.
+                Give the link to someone who has the Exponent app and they'll be
+                able to see what you've built.
+            </Text>
+
+            <Text style={styles.attribution}>
+                Made for <Text style={styles.exponent}>EXPONENT</Text>
+            </Text>
+            </ExScreen>
+        );
+    }
+
+    componentDidMount() {
+        if (StatusBarIOS) {
+            StatusBarIOS.setStyle('light-content', true);
+            StatusBarIOS.setHidden(false, 'fade');
+        }
+    }
+
+    _handleColorSelected(color) {
+        this.setState({headerColor: color});
+    }
+}
 
 AppRegistry.registerComponent('main', () => FirstExperience);

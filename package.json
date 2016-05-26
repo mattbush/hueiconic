@@ -11,5 +11,10 @@
   "dependencies": {
     "react": "^0.14.5",
     "react-native": "github:exponentjs/react-native#sdk-5.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.4",
+    "eslint": "^2.10.2",
+    "eslint-plugin-react": "^5.1.1"
   }
 }
